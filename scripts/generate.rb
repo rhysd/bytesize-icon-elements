@@ -57,9 +57,21 @@ test = File.join(__dir__, '..', 'icon_names.js')
 
 puts <<-JS
 (function() {
-  let mod = window;
-  if (typeof exports !== 'undefined') {
+  if (typeof HTMLElement === 'undefined') {
+    var HTMLElement = class {};
+  }
+  if (typeof customElements === 'undefined') {
+   var customElements = {
+     define: function() {}
+   };
+  }
+  let mod;
+  if (typeof window !== 'undefined') {
+    mod = window;
+  } else if (typeof exports !== 'undefined') {
     mod = exports;
+  } else {
+    mod = {};
   }
 
   const typeToWidth = {
