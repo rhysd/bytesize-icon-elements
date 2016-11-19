@@ -4,11 +4,13 @@ Custom Elements for Bytesize Icons
 This package provides [bytesize-icons](https://github.com/danklammer/bytesize-icons) icons as [CustomElements](https://developers.google.com/web/fundamentals/getting-started/primers/customelements).
 bytesize-icons are lightweight, reasonable set of nice icons with SVG format.
 
+
 ## Installation
 
 ```sh
 $ npm install --save bytesize-icon-elements
 ```
+
 
 ## Usage
 
@@ -38,6 +40,17 @@ Each icon has below optional properties.
 | `width`  | Width of icon.                                                                                                        | `32`      |
 | `height` | Height of icon.                                                                                                       | `32`      |
 
+
+## Development
+
+```sh
+$ npm install
+# Updates bytesize-icons if needed
+$ npm run gen
+$ git add -A
+$ git commit -m "update something"
+$ npm version x.y.z
+```
 
 ## All Icons
 
