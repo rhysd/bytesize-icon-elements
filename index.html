@@ -5,8 +5,46 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes" />
     <title></title>
   </head>
+  <style>
+    table, td, th {
+      border: 1px #d0d2d0 solid;
+      border-collapse: collapse;
+    }
+    th {
+      padding: 0 8px;
+    }
+    td {
+      text-align: center;
+    }
+  </style>
   <body>
-    <icon-search width="16"></icon-search>
+    <table id="contents"></table>
   </body>
   <script src="index.js"></script>
+  <script>
+    const main = document.getElementById('contents');
+    const types = ['ultra-light', 'thin', 'light', 'regular', 'medium', 'bold', 'heavy'];
+    {
+      const tr = document.createElement('tr');
+      tr.appendChild(document.createElement('th'));
+      types.forEach(t => {
+        const th = document.createElement('th');
+        th.innerText = t;
+        tr.appendChild(th);
+      });
+      main.appendChild(tr);
+    }
+    window.ICON_NAMES.forEach(n => {
+      const tr = document.createElement('tr');
+      const name = document.createElement('th');
+      name.innerText = n;
+      tr.appendChild(name);
+      types.forEach(t => {
+        const td = document.createElement('td');
+        td.innerHTML = `<icon-${n} type="${t}"></icon-${n}>`;
+        tr.appendChild(td);
+      });
+      main.appendChild(tr);
+    });
+  </script>
 </html>
