@@ -36,7 +36,7 @@ def registration_template(name, html)
       const t = this.getAttribute('type');
       if (t) {
         const s = typeToWidth[t];
-        if (s) this.setAttribute('stroke-width', s);
+        if (s) child.setAttribute('stroke-width', s);
       }
     }
   }
