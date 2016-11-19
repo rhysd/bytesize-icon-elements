@@ -40,7 +40,7 @@ def registration_template(name, html)
       }
     }
   }
-  mod.#{klass} = #{klass};
+  window.BytesizeIcons.#{klass} = #{klass};
   customElements.define('icon-#{name}', #{klass});
   JS
 end
@@ -57,23 +57,7 @@ test = File.join(__dir__, '..', 'icon_names.js')
 
 puts <<-JS
 (function() {
-  if (typeof HTMLElement === 'undefined') {
-    var HTMLElement = class {};
-  }
-  if (typeof customElements === 'undefined') {
-   var customElements = {
-     define: function() {}
-   };
-  }
-  let mod;
-  if (typeof window !== 'undefined') {
-    mod = window;
-  } else if (typeof exports !== 'undefined') {
-    mod = exports;
-  } else {
-    mod = {};
-  }
-
+  window.BytesizeIcons = {};
   const typeToWidth = {
     'ultra-light': '1.5625%',
     thin: '3.125%',
@@ -86,6 +70,6 @@ puts <<-JS
 
 #{generate_custom_elements icons}
 
-  mod.ICON_NAMES = [#{icons.keys.map{|n| "'#{n}'"}.join(', ')}];
+  window.BytesizeIcons.ICON_NAMES = [#{icons.keys.map{|n| "'#{n}'"}.join(', ')}];
 })();
 JS
