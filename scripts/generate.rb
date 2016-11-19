@@ -22,9 +22,17 @@ def registration_template(name, html)
       this.innerHTML = `#{html}`;
       const child =  this.getElementsByTagName('svg')[0];
       const w = this.getAttribute('width');
-      if (w) child.setAttribute('width', w);
+      if (w) {
+        child.setAttribute('width', w);
+      } else {
+        child.setAttribute('width', '32');
+      }
       const h = this.getAttribute('height');
-      if (h) child.setAttribute('height', w);
+      if (h) {
+        child.setAttribute('height', w);
+      } else {
+        child.setAttribute('height', '32');
+      }
       const t = this.getAttribute('type');
       if (t) {
         const s = typeToWidth[t];
