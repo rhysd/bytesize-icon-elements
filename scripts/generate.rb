@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'json'
+
 def read_svg_icons(dir)
   Dir.glob(File.join(dir, '*.svg')).inject({}) do |ret, f|
     ret[File.basename(f, '.svg')] = File.read f
@@ -42,6 +44,9 @@ end
 icons = read_svg_icons File.join(__dir__, '..', 'node_modules', 'bytesize-icons', 'dist/icons')
 raise 'Icons not found' if icons.empty?
 
+js = File.join(__dir__, '..', 'index.js')
+test = File.join(__dir__, '..', 'icon_names.js')
+
 puts <<-JS
 (function() {
   let mod = window;
@@ -60,5 +65,7 @@ puts <<-JS
   };
 
 #{generate_custom_elements icons}
+
+  mod.ICON_NAMES = #{JSON.generate(icons.keys)};
 })();
 JS
