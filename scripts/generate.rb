@@ -74,6 +74,6 @@ puts <<-JS
 
 #{generate_custom_elements icons}
 
-  mod.ICON_NAMES = #{JSON.generate(icons.keys)};
+  mod.ICON_NAMES = [#{icons.keys.map{|n| "'#{n}'"}.join(', ')}];
 })();
 JS
