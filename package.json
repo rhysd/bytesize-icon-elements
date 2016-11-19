@@ -1,0 +1,30 @@
+{
+  "name": "bytesize-icon-elements",
+  "version": "0.0.0",
+  "description": "custom elements for bytesize icons",
+  "main": "index.js",
+  "scripts": {
+    "gen": "./scripts/generate.rb > index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhysd/bytesize-icon-elements.git"
+  },
+  "keywords": [
+    "custom",
+    "elements",
+    "bytesize",
+    "icons",
+    "webcomponents"
+  ],
+  "author": "rhysd <lin90162@yahoo.co.jp>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rhysd/bytesize-icon-elements/issues"
+  },
+  "homepage": "https://github.com/rhysd/bytesize-icon-elements#readme",
+  "devDependencies": {
+    "bytesize-icons": "^1.1.0"
+  }
+}
