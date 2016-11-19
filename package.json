@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint index.js",
     "gen:indexjs": "./scripts/generate.rb > index.js",
-    "gen:readme": "./scripts/generate_readme.js > README.md",
+    "gen:readme": "./scripts/readme_gen.rb > README.md",
     "gen": "npm run gen:indexjs && npm run gen:readme",
     "preversion": "npm run lint",
     "test": "echo \"Error: no test specified\" && exit 1"
