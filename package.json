@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint index.js",
     "gen": "./scripts/generate.rb > index.js",
+    "preversion": "npm run lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

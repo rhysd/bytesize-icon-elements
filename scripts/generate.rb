@@ -19,9 +19,9 @@ def registration_template(name, html)
       super();
       this.innerHTML = `#{html}`;
       const child =  this.getElementsByTagName('svg')[0];
-      const w = this.getAttribute('width')
+      const w = this.getAttribute('width');
       if (w) child.setAttribute('width', w);
-      const h = this.getAttribute('height')
+      const h = this.getAttribute('height');
       if (h) child.setAttribute('height', w);
       const t = this.getAttribute('type');
       if (t) {
