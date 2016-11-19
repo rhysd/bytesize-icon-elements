@@ -4,6 +4,7 @@
   "description": "custom elements for bytesize icons",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint index.js",
     "gen": "./scripts/generate.rb > index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/rhysd/bytesize-icon-elements#readme",
   "devDependencies": {
-    "bytesize-icons": "^1.1.0"
+    "bytesize-icons": "^1.1.0",
+    "eslint": "^3.10.2"
   }
 }
