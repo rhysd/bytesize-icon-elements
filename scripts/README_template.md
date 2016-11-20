@@ -37,8 +37,8 @@ Each icon has below optional properties.
 | Name     | Description                                                                                                           | Default   |
 |----------|-----------------------------------------------------------------------------------------------------------------------|-----------|
 | `type`   | One of `ultra-light`, `thin`, `light`, `regular`, `medium`, `bold` and `heavy`. It determines `stroke-width` of icon. | `regular` |
-| `width`  | Width of icon.                                                                                                        | `32`      |
-| `height` | Height of icon.                                                                                                       | `32`      |
+| `width`  | Width of icon (in pixels).                                                                                            | `32`      |
+| `height` | Height of icon (in pixels).                                                                                           | `32`      |
 
 
 ## Development
@@ -47,10 +47,10 @@ Each icon has below optional properties.
 $ npm install
 # Updates bytesize-icons if needed
 $ npm run gen
-$ git add -A
-$ git commit -m "update something"
-$ npm version x.y.z
+$ npm run test
 ```
 
 ## All Icons
+
+You can see all icons in [bytesize-icons](https://github.com/danklammer/bytesize-icons#grab-n-go) repository page.
 
