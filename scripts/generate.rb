@@ -19,25 +19,7 @@ def registration_template(name, html)
   class #{klass} extends HTMLElement {
     constructor() {
       super();
-      this.innerHTML = `#{html}`;
-      const child =  this.getElementsByTagName('svg')[0];
-      const w = this.getAttribute('width');
-      if (w) {
-        child.setAttribute('width', w);
-      } else {
-        child.setAttribute('width', '32');
-      }
-      const h = this.getAttribute('height');
-      if (h) {
-        child.setAttribute('height', w);
-      } else {
-        child.setAttribute('height', '32');
-      }
-      const t = this.getAttribute('type');
-      if (t) {
-        const s = typeToWidth[t];
-        if (s) child.setAttribute('stroke-width', s);
-      }
+      setupIconElement(this, `#{html}`);
     }
   }
   window.BytesizeIcons.#{klass} = #{klass};
@@ -67,6 +49,27 @@ puts <<-JS
     bold: '9.375%',
     heavy: '10.9375%'
   };
+
+  function setupIconElement(self, html) {
+    self.innerHTML = html;
+    const child =  self.getElementsByTagName('svg')[0];
+    const w = self.getAttribute('width');
+    if (w) {
+      child.setAttribute('width', w);
+    } else {
+      child.setAttribute('width', '32');
+    }
+    const h = self.getAttribute('height');
+    if (h) {
+      child.setAttribute('height', w);
+    } else {
+      child.setAttribute('height', '32');
+    }
+    const t = self.getAttribute('type');
+    if (t && typeToWidth[t]) {
+      child.setAttribute('stroke-width', typeToWidth[t]);
+    }
+  }
 
 #{generate_custom_elements icons}
 
