@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'json'
-
 def read_svg_icons(dir)
   Dir.glob(File.join(dir, '*.svg')).inject({}) do |ret, f|
     ret[File.basename(f, '.svg')] = File.read f
