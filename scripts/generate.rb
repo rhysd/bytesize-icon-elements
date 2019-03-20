@@ -67,6 +67,22 @@ puts <<-JS
     style: 'round'
   };
 
+  function setDefaultAttributes (attributes) {
+    Object.assign(defaultAttributes, attributes);
+  }
+
+  class BytesizeIconDefaults extends HTMLElement {
+    constructor() {
+      super();
+      const size = this.getAttribute('size') || defaultAttributes.size;
+      const weight = this.getAttribute('weight') || defaultAttributes.weight;
+      const style = this.getAttribute('style') || defaultAttributes.style;
+      setDefaultAttributes({ size, weight, style });
+    }
+  }
+
+  customElements.define('bytesize-icon-defaults', BytesizeIconDefaults);
+
   class BytesizeIcon extends HTMLElement {
     constructor() {
       super();
@@ -88,7 +104,9 @@ puts <<-JS
     Object.assign(defaultAttributes, attributes);
   };
 
-  BytesizeIcon.names = [#{icons.keys.map{|n| "'#{n}'"}.join(', ')}];
+  window.BytesizeIconDefaults = BytesizeIconDefaults;
   window.BytesizeIcon = BytesizeIcon;
+
+  BytesizeIcon.names = [#{icons.keys.map{|n| "'#{n}'"}.join(', ')}];
 })();
 JS
