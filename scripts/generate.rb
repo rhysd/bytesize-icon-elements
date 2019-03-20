@@ -7,56 +7,35 @@ def read_svg_icons(dir)
   end
 end
 
-def to_class(name)
-  name.split('-').map(&:capitalize).join
-end
-
-def registration_template(name, html)
-  klass = to_class name
-  declaration = <<-JS
-  class #{klass} extends HTMLElement {
-    constructor() {
-      super();
-  JS
+def icon_html_entry_template(name, html)
   html = html.gsub(' width="32"', ' width="${size}"')
     .gsub(' height="32"', ' height="${size}"')
-  # Github and Twitter icons lack width, linecap and linejoin stroke attributes.
-  if html.include? ' stroke-linecap'
-    html = html.gsub(' stroke-linecap="round"', ' stroke-linecap="${linecap}"')
-      .gsub(' stroke-linejoin="round"', ' stroke-linejoin="${linejoin}"')
-      .gsub(' stroke-width="2"', ' stroke-width="${weight}"')
-    declaration += <<-JS
-      const { size, weight, linecap, linejoin } = getAttributes.call(this);
+    .gsub(' stroke-linecap="round"', ' stroke-linecap="${linecap}"')
+    .gsub(' stroke-linejoin="round"', ' stroke-linejoin="${linejoin}"')
+    .gsub(' stroke-width="2"', ' stroke-width="${weight}"')
+  if name.include? '-'
+    <<-JS
+        '#{name}': `#{html}`,
     JS
   else
-    declaration += <<-JS
-      const size = getSize.call(this);
+    <<-JS
+        #{name}: `#{html}`,
     JS
   end
-  declaration += <<-JS
-      this.innerHTML = `#{html}`;
-    }
-  }
-  window.BytesizeIcons.#{klass} = #{klass};
-  customElements.define('icon-#{name}', #{klass});
-  JS
-  declaration
 end
 
-def generate_custom_elements(icons)
-  icons.map{|n, h| registration_template(n, h)}.join("\n")
+def generate_icon_html_map(icons)
+  icons.map{|n, h| icon_html_entry_template(n, h)}
+    .join
+    .rstrip
+    .chomp(',')
 end
 
 icons = read_svg_icons File.join(__dir__, '..', 'node_modules', 'bytesize-icons', 'dist/icons')
 raise 'Icons not found' if icons.empty?
 
-js = File.join(__dir__, '..', 'index.js')
-test = File.join(__dir__, '..', 'icon_names.js')
-
 puts <<-JS
 (function() {
-  window.BytesizeIcons = {};
-
   const weights = {
     'ultra-light': '1.5625%',
     thin: '3.125%',
@@ -82,19 +61,24 @@ puts <<-JS
     }
   };
 
-  function getAttributes () {
-    const size = getSize.call(this);
-    const weight = weights[this.getAttribute('weight')] || weights['regular'];
-    const style = styles[this.getAttribute('style')] || styles['round'];
-    const { linecap, linejoin } = style;
-    return { size, weight, linecap, linejoin };
+  class BytesizeIcon extends HTMLElement {
+    constructor() {
+      super();
+      const size = this.getAttribute('size') || '32';
+      const weight = weights[this.getAttribute('weight')] || weights['regular'];
+      const style = styles[this.getAttribute('style')] || styles['round'];
+      const { linecap, linejoin } = style;
+      const icons = {
+#{generate_icon_html_map icons}
+      };
+      const html = icons[this.getAttribute('name')]; 
+      this.innerHTML = html;
+    }
   }
 
-  function getSize () {
-    return this.getAttribute('size') || '32';
-  }
+  customElements.define('bytesize-icon', BytesizeIcon);
 
-#{generate_custom_elements icons}
-  window.BytesizeIcons.ICON_NAMES = [#{icons.keys.map{|n| "'#{n}'"}.join(', ')}];
+  BytesizeIcon.names = [#{icons.keys.map{|n| "'#{n}'"}.join(', ')}];
+  window.BytesizeIcon = BytesizeIcon;
 })();
 JS

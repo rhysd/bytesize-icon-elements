@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes" />
-    <title></title>
+    <title>Test BytesizeIcon Element</title>
   </head>
   <style>
     table, td, th {
       border: 1px #d0d2d0 solid;
       border-collapse: collapse;
     }
-    th {
-      padding: 0 8px;
+    th, td {
+      padding: .5em;
     }
     td {
       text-align: center;
@@ -19,40 +19,40 @@
   </style>
   <body>
     <table id="contents"></table>
-  </body>
-  <script src="index.js"></script>
-  <script>
-    const main = document.getElementById('contents');
-    const weights = ['ultra-light', 'thin', 'light', 'regular', 'medium', 'bold', 'heavy'];
-    const styles = ['bevel', 'miter'];
-    {
-      const tr = document.createElement('tr');
-      tr.appendChild(document.createElement('th'));
-      weights.forEach(createTableHeader);
-      styles.forEach(createTableHeader);
-      main.appendChild(tr);
-      function createTableHeader(title) {
-        const th = document.createElement('th');
-        th.innerText = title;
-        tr.appendChild(th);
-      }
-    }
-    window.BytesizeIcons.ICON_NAMES.forEach(n => {
-      const tr = document.createElement('tr');
-      const name = document.createElement('th');
-      name.innerText = n;
-      tr.appendChild(name);
-      weights.forEach(createTableCell);
-      styles.forEach(createTableCell.bind(null, 'regular'));
-      main.appendChild(tr);
-      function createTableCell(weight, style) {
-        const td = document.createElement('td');
-        if (!style) {
-          style = 'round';
+    <script src="index.js"></script>
+    <script>
+      const main = document.getElementById('contents');
+      const weights = ['ultra-light', 'thin', 'light', 'regular', 'medium', 'bold', 'heavy'];
+      const styles = ['bevel', 'miter'];
+      {
+        const tr = document.createElement('tr');
+        tr.appendChild(document.createElement('th'));
+        weights.forEach(createTableHeader);
+        styles.forEach(createTableHeader);
+        main.appendChild(tr);
+        function createTableHeader(title) {
+          const th = document.createElement('th');
+          th.innerText = title;
+          tr.appendChild(th);
         }
-        td.innerHTML = `<icon-${n} weight="${weight}" style="${style}"></icon-${n}>`;
-        tr.appendChild(td);
       }
-    });
-  </script>
+      BytesizeIcon.names.forEach(n => {
+        const tr = document.createElement('tr');
+        const name = document.createElement('th');
+        name.innerText = n;
+        tr.appendChild(name);
+        weights.forEach(createTableCell);
+        styles.forEach(createTableCell.bind(null, 'regular'));
+        main.appendChild(tr);
+        function createTableCell(weight, style) {
+          const td = document.createElement('td');
+          if (!style) {
+            style = 'round';
+          }
+          td.innerHTML = `<bytesize-icon name="${n}" weight="${weight}" style="${style}"></bytesize-icon>`;
+          tr.appendChild(td);
+        }
+      });
+    </script>
+  </body>
 </html>
