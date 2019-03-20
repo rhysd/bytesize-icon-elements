@@ -1,0 +1,8 @@
+{
+  "search.exclude": {
+    "**/node_modules": true,
+    "README.md": true,
+    "index.js": true,
+    "package-lock.json": true
+  }
+}
