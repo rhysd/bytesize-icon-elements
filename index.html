@@ -23,11 +23,11 @@
   <script src="index.js"></script>
   <script>
     const main = document.getElementById('contents');
-    const types = ['ultra-light', 'thin', 'light', 'regular', 'medium', 'bold', 'heavy'];
+    const weights = ['ultra-light', 'thin', 'light', 'regular', 'medium', 'bold', 'heavy'];
     {
       const tr = document.createElement('tr');
       tr.appendChild(document.createElement('th'));
-      types.forEach(t => {
+      weights.forEach(t => {
         const th = document.createElement('th');
         th.innerText = t;
         tr.appendChild(th);
@@ -39,9 +39,9 @@
       const name = document.createElement('th');
       name.innerText = n;
       tr.appendChild(name);
-      types.forEach(t => {
+      weights.forEach(t => {
         const td = document.createElement('td');
-        td.innerHTML = `<icon-${n} type="${t}"></icon-${n}>`;
+        td.innerHTML = `<icon-${n} weight="${t}"></icon-${n}>`;
         tr.appendChild(td);
       });
       main.appendChild(tr);
