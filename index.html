@@ -24,27 +24,35 @@
   <script>
     const main = document.getElementById('contents');
     const weights = ['ultra-light', 'thin', 'light', 'regular', 'medium', 'bold', 'heavy'];
+    const styles = ['bevel', 'miter'];
     {
       const tr = document.createElement('tr');
       tr.appendChild(document.createElement('th'));
-      weights.forEach(t => {
-        const th = document.createElement('th');
-        th.innerText = t;
-        tr.appendChild(th);
-      });
+      weights.forEach(createTableHeader);
+      styles.forEach(createTableHeader);
       main.appendChild(tr);
+      function createTableHeader(title) {
+        const th = document.createElement('th');
+        th.innerText = title;
+        tr.appendChild(th);
+      }
     }
     window.BytesizeIcons.ICON_NAMES.forEach(n => {
       const tr = document.createElement('tr');
       const name = document.createElement('th');
       name.innerText = n;
       tr.appendChild(name);
-      weights.forEach(t => {
-        const td = document.createElement('td');
-        td.innerHTML = `<icon-${n} weight="${t}"></icon-${n}>`;
-        tr.appendChild(td);
-      });
+      weights.forEach(createTableCell);
+      styles.forEach(createTableCell.bind(null, 'regular'));
       main.appendChild(tr);
+      function createTableCell(weight, style) {
+        const td = document.createElement('td');
+        if (!style) {
+          style = 'round';
+        }
+        td.innerHTML = `<icon-${n} weight="${weight}" style="${style}"></icon-${n}>`;
+        tr.appendChild(td);
+      }
     });
   </script>
 </html>
