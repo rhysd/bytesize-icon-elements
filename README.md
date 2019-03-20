@@ -1,9 +1,7 @@
 Custom Elements for Bytesize Icons
 ==================================
 
-This package provides icons from [bytesize-icons](https://github.com/danklammer/bytesize-icons) as a [CustomElement](https://developers.google.com/web/fundamentals/getting-started/primers/customelements).
-
-`bytesize-icons` is a lightweight, reasonable set of nice icons in the SVG format.
+This package provides icons from [bytesize-icons](https://github.com/danklammer/bytesize-icons) as a [CustomElement](https://developers.google.com/web/fundamentals/getting-started/primers/customelements). The bytesize-icons package contains a lightweight, reasonable set of nice icons in the SVG format.
 
 ## Installation
 
@@ -42,6 +40,16 @@ The following attributes are supported. The `name` attribute is mandatory, the o
 | `weight`   | One of `ultra-light`, `thin`, `light`, `regular`, `medium`, `bold` and `heavy`. It determines `stroke-width` of the icon. | `regular` |
 | `style`   | One of `round`, `bevel` and `miter`. It determines `stroke-linejoin` and `stroke-linecap` of the icon. | `round` |
 | `size`  | Size (width and height) of the icon (in pixels). | `32` |
+
+Default attribute values can be changed by the `BytesizeIcon.setDefaultAttributes` method, before the icon elements are constructed:
+
+```js
+BytesizeIcon.setDefaultAttributes({
+  size: 64,
+  style: 'miter',
+  weight: 'bold'
+});
+```
 
 ## Development
 

@@ -41,6 +41,16 @@ The following attributes are supported. The `name` attribute is mandatory, the o
 | `style`   | One of `round`, `bevel` and `miter`. It determines `stroke-linejoin` and `stroke-linecap` of the icon. | `round` |
 | `size`  | Size (width and height) of the icon (in pixels). | `32` |
 
+Default attribute values can be changed by the `BytesizeIcon.setDefaultAttributes` method, before the icon elements are constructed:
+
+```js
+BytesizeIcon.setDefaultAttributes({
+  size: 64,
+  style: 'miter',
+  weight: 'bold'
+});
+```
+
 ## Development
 
 ```sh

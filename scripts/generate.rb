@@ -61,12 +61,18 @@ puts <<-JS
     }
   };
 
+  const defaultAttributes = {
+    size: '32',
+    weight: 'regular',
+    style: 'round'
+  };
+
   class BytesizeIcon extends HTMLElement {
     constructor() {
       super();
-      const size = this.getAttribute('size') || '32';
-      const weight = weights[this.getAttribute('weight')] || weights['regular'];
-      const style = styles[this.getAttribute('style')] || styles['round'];
+      const size = this.getAttribute('size') || defaultAttributes.size;
+      const weight = weights[this.getAttribute('weight')] || weights[defaultAttributes.weight];
+      const style = styles[this.getAttribute('style')] || styles[defaultAttributes.style];
       const { linecap, linejoin } = style;
       const icons = {
 #{generate_icon_html_map icons}
@@ -77,6 +83,10 @@ puts <<-JS
   }
 
   customElements.define('bytesize-icon', BytesizeIcon);
+
+  BytesizeIcon.setDefaultAttributes = function (attributes) {
+    Object.assign(defaultAttributes, attributes);
+  };
 
   BytesizeIcon.names = [#{icons.keys.map{|n| "'#{n}'"}.join(', ')}];
   window.BytesizeIcon = BytesizeIcon;
