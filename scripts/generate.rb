@@ -13,16 +13,34 @@ end
 
 def registration_template(name, html)
   klass = to_class name
-  <<-JS
+  declaration = <<-JS
   class #{klass} extends HTMLElement {
     constructor() {
       super();
-      setupIconElement(this, `#{html}`);
+  JS
+  html = html.gsub(' width="32"', ' width="${size}"')
+    .gsub(' height="32"', ' height="${size}"')
+  # Github and Twitter icons lack width, linecap and linejoin stroke attributes.
+  if html.include? ' stroke-linecap'
+    html = html.gsub(' stroke-linecap="round"', ' stroke-linecap="${linecap}"')
+      .gsub(' stroke-linejoin="round"', ' stroke-linejoin="${linejoin}"')
+      .gsub(' stroke-width="2"', ' stroke-width="${weight}"')
+    declaration += <<-JS
+      const { size, weight, linecap, linejoin } = getAttributes.call(this);
+    JS
+  else
+    declaration += <<-JS
+      const size = getSize.call(this);
+    JS
+  end
+  declaration += <<-JS
+      this.innerHTML = `#{html}`;
     }
   }
   window.BytesizeIcons.#{klass} = #{klass};
   customElements.define('icon-#{name}', #{klass});
   JS
+  declaration
 end
 
 def generate_custom_elements(icons)
@@ -38,6 +56,7 @@ test = File.join(__dir__, '..', 'icon_names.js')
 puts <<-JS
 (function() {
   window.BytesizeIcons = {};
+
   const weights = {
     'ultra-light': '1.5625%',
     thin: '3.125%',
@@ -47,6 +66,7 @@ puts <<-JS
     bold: '9.375%',
     heavy: '10.9375%'
   };
+
   const styles = {
     round: {
       linejoin: 'round',
@@ -62,25 +82,19 @@ puts <<-JS
     }
   };
 
-  function setupIconElement(self, html) {
-    self.innerHTML = html;
-    const child =  self.getElementsByTagName('svg')[0];
-    const size = self.getAttribute('size') || '32';
-    child.setAttribute('width', size);
-    child.setAttribute('height', size);
-    const weight = weights[self.getAttribute('weight')];
-    if (weight) {
-      child.setAttribute('stroke-width', weight);
-    }
-    const style = styles[self.getAttribute('style')];
-    if (style) {
-      child.setAttribute('stroke-linejoin', style.linejoin);
-      child.setAttribute('stroke-linecap', style.linecap);
-    }
+  function getAttributes () {
+    const size = getSize.call(this);
+    const weight = weights[this.getAttribute('weight')] || weights['regular'];
+    const style = styles[this.getAttribute('style')] || styles['round'];
+    const { linecap, linejoin } = style;
+    return { size, weight, linecap, linejoin };
+  }
+
+  function getSize () {
+    return this.getAttribute('size') || '32';
   }
 
 #{generate_custom_elements icons}
-
   window.BytesizeIcons.ICON_NAMES = [#{icons.keys.map{|n| "'#{n}'"}.join(', ')}];
 })();
 JS
