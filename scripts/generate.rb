@@ -51,18 +51,9 @@ puts <<-JS
   function setupIconElement(self, html) {
     self.innerHTML = html;
     const child =  self.getElementsByTagName('svg')[0];
-    const w = self.getAttribute('width');
-    if (w) {
-      child.setAttribute('width', w);
-    } else {
-      child.setAttribute('width', '32');
-    }
-    const h = self.getAttribute('height');
-    if (h) {
-      child.setAttribute('height', w);
-    } else {
-      child.setAttribute('height', '32');
-    }
+    const size = self.getAttribute('size') || '32';
+    child.setAttribute('width', size);
+    child.setAttribute('height', size);
     const weight = weights[self.getAttribute('weight')];
     if (weight) {
       child.setAttribute('stroke-width', weight);

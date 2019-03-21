@@ -23,7 +23,7 @@ $ npm install --save bytesize-icon-elements
 
     Icon size is variable because it's SVG.
 
-    This is a big flag icon: <icon-flag width="64" height="64"></icon-flag>
+    This is a big flag icon: <icon-flag size="64"></icon-flag>
   </body>
   <script src="/path/to/bytesize-icon-elements/index.js"></script>
 </html>
@@ -37,9 +37,7 @@ Each icon has below optional properties.
 | Name     | Description                                                                                                           | Default   |
 |----------|-----------------------------------------------------------------------------------------------------------------------|-----------|
 | `weight`   | One of `ultra-light`, `thin`, `light`, `regular`, `medium`, `bold` and `heavy`. It determines `stroke-width` of icon. | `regular` |
-| `width`  | Width of icon (in pixels).                                                                                            | `32`      |
-| `height` | Height of icon (in pixels).                                                                                           | `32`      |
-
+| `size`  | Size (width and height) of icon (in pixels).                                                                                            | `32`      |
 
 ## Development
 
