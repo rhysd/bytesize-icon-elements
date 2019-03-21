@@ -21,6 +21,8 @@ $ npm install --save bytesize-icon-elements
 
     And this is a thin book icon: <icon-book weight="thin"></icon-book>
 
+    And this is a gear icon with sharp edges: <icon-settings style="miter"></icon-book>
+
     Icon size is variable because it's SVG.
 
     This is a big flag icon: <icon-flag size="64"></icon-flag>
@@ -37,6 +39,7 @@ Each icon has below optional properties.
 | Name     | Description                                                                                                           | Default   |
 |----------|-----------------------------------------------------------------------------------------------------------------------|-----------|
 | `weight`   | One of `ultra-light`, `thin`, `light`, `regular`, `medium`, `bold` and `heavy`. It determines `stroke-width` of icon. | `regular` |
+| `style`   | One of `round`, `bevel` and `miter`. It determines `stroke-linejoin` and `stroke-linecap` of icon. | `round` |
 | `size`  | Size (width and height) of icon (in pixels).                                                                                            | `32`      |
 
 ## Development

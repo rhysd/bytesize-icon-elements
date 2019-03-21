@@ -47,6 +47,20 @@ puts <<-JS
     bold: '9.375%',
     heavy: '10.9375%'
   };
+  const styles = {
+    round: {
+      linejoin: 'round',
+      linecap: 'round',
+    },
+    bevel: {
+      linejoin: 'bevel',
+      linecap: 'butt',
+    },
+    miter: {
+      linejoin: 'miter',
+      linecap: 'butt',
+    }
+  };
 
   function setupIconElement(self, html) {
     self.innerHTML = html;
@@ -57,6 +71,11 @@ puts <<-JS
     const weight = weights[self.getAttribute('weight')];
     if (weight) {
       child.setAttribute('stroke-width', weight);
+    }
+    const style = styles[self.getAttribute('style')];
+    if (style) {
+      child.setAttribute('stroke-linejoin', style.linejoin);
+      child.setAttribute('stroke-linecap', style.linecap);
     }
   }
 
