@@ -62,6 +62,7 @@ You can see all icons in [bytesize-icons](https://github.com/danklammer/bytesize
 - `<icon-arrow-right></icon-arrow-right>`
 - `<icon-arrow-top></icon-arrow-top>`
 - `<icon-backwards></icon-backwards>`
+- `<icon-bag></icon-bag>`
 - `<icon-ban></icon-ban>`
 - `<icon-bell></icon-bell>`
 - `<icon-book></icon-book>`
@@ -78,11 +79,13 @@ You can see all icons in [bytesize-icons](https://github.com/danklammer/bytesize
 - `<icon-chevron-left></icon-chevron-left>`
 - `<icon-chevron-right></icon-chevron-right>`
 - `<icon-chevron-top></icon-chevron-top>`
+- `<icon-clipboard></icon-clipboard>`
 - `<icon-clock></icon-clock>`
 - `<icon-close></icon-close>`
 - `<icon-code></icon-code>`
 - `<icon-compose></icon-compose>`
 - `<icon-creditcard></icon-creditcard>`
+- `<icon-desktop></icon-desktop>`
 - `<icon-download></icon-download>`
 - `<icon-edit></icon-edit>`
 - `<icon-eject></icon-eject>`
@@ -95,8 +98,8 @@ You can see all icons in [bytesize-icons](https://github.com/danklammer/bytesize
 - `<icon-file></icon-file>`
 - `<icon-fire></icon-fire>`
 - `<icon-flag></icon-flag>`
-- `<icon-folder-open></icon-folder-open>`
 - `<icon-folder></icon-folder>`
+- `<icon-folder-open></icon-folder-open>`
 - `<icon-forwards></icon-forwards>`
 - `<icon-gift></icon-gift>`
 - `<icon-github></icon-github>`
@@ -112,7 +115,10 @@ You can see all icons in [bytesize-icons](https://github.com/danklammer/bytesize
 - `<icon-mail></icon-mail>`
 - `<icon-menu></icon-menu>`
 - `<icon-message></icon-message>`
+- `<icon-microphone></icon-microphone>`
 - `<icon-minus></icon-minus>`
+- `<icon-mobile></icon-mobile>`
+- `<icon-move></icon-move>`
 - `<icon-music></icon-music>`
 - `<icon-mute></icon-mute>`
 - `<icon-options></icon-options>`
@@ -128,9 +134,12 @@ You can see all icons in [bytesize-icons](https://github.com/danklammer/bytesize
 - `<icon-search></icon-search>`
 - `<icon-send></icon-send>`
 - `<icon-settings></icon-settings>`
+- `<icon-sign-in></icon-sign-in>`
+- `<icon-sign-out></icon-sign-out>`
 - `<icon-star></icon-star>`
 - `<icon-start></icon-start>`
 - `<icon-tag></icon-tag>`
+- `<icon-telephone></icon-telephone>`
 - `<icon-trash></icon-trash>`
 - `<icon-twitter></icon-twitter>`
 - `<icon-unlock></icon-unlock>`
