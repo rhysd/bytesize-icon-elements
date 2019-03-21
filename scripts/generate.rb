@@ -38,7 +38,7 @@ test = File.join(__dir__, '..', 'icon_names.js')
 puts <<-JS
 (function() {
   window.BytesizeIcons = {};
-  const typeToWidth = {
+  const weights = {
     'ultra-light': '1.5625%',
     thin: '3.125%',
     light: '4.6875%',
@@ -63,9 +63,9 @@ puts <<-JS
     } else {
       child.setAttribute('height', '32');
     }
-    const t = self.getAttribute('type');
-    if (t && typeToWidth[t]) {
-      child.setAttribute('stroke-width', typeToWidth[t]);
+    const weight = weights[self.getAttribute('weight')];
+    if (weight) {
+      child.setAttribute('stroke-width', weight);
     }
   }
 

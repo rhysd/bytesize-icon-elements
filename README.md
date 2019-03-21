@@ -19,7 +19,7 @@ $ npm install --save bytesize-icon-elements
   <body>
     This is search icon: <icon-search></icon-search>
 
-    And this is a thin book icon: <icon-book type="thin"></icon-book>
+    And this is a thin book icon: <icon-book weight="thin"></icon-book>
 
     Icon size is variable because it's SVG.
 
@@ -36,7 +36,7 @@ Each icon has below optional properties.
 
 | Name     | Description                                                                                                           | Default   |
 |----------|-----------------------------------------------------------------------------------------------------------------------|-----------|
-| `type`   | One of `ultra-light`, `thin`, `light`, `regular`, `medium`, `bold` and `heavy`. It determines `stroke-width` of icon. | `regular` |
+| `weight`   | One of `ultra-light`, `thin`, `light`, `regular`, `medium`, `bold` and `heavy`. It determines `stroke-width` of icon. | `regular` |
 | `width`  | Width of icon (in pixels).                                                                                            | `32`      |
 | `height` | Height of icon (in pixels).                                                                                           | `32`      |
 
