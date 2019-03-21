@@ -1,6 +1,6 @@
 {
   "name": "bytesize-icon-elements",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "custom elements for bytesize icons",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,10 @@
     "icons",
     "webcomponents"
   ],
-  "author": "rhysd <lin90162@yahoo.co.jp>",
+  "author": [
+    "rhysd <lin90162@yahoo.co.jp>",
+    "Ferdinand Prantl <prantlf@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rhysd/bytesize-icon-elements/issues"
